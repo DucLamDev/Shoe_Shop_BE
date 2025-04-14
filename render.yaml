@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: shop-giay-api
+    env: java
+    buildCommand: ./gradlew build -x test
+    startCommand: java -Dspring.profiles.active=prod -jar build/libs/*.jar
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
+      - key: JDBC_DATABASE_URL
+        sync: false
+      - key: JDBC_DATABASE_USERNAME
+        sync: false
+      - key: JDBC_DATABASE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRATION
+        value: 86400000 
